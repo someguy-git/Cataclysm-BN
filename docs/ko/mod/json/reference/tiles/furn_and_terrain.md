@@ -494,7 +494,7 @@ looks_like 체인 어느 항목에서도 타일을 찾지 못하면 ASCII 심볼
 
 #### `examine_action`
 
-(선택) 객체를 조사할 때 호출되는 json 함수입니다. "src/iexamine.h"를 참고하세요.
+(선택) 객체를 조사할 때 호출되는 json 함수입니다. "src/cpp/iexamine.h"를 참고하세요.
 
 #### `close" And "open`
 

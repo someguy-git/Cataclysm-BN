@@ -1,6 +1,6 @@
 #include "state_helpers.h"
 
-#include "../src/map/map.h"
+#include "../src/cpp/map/map.h"
 #include "calendar.h"
 #include "cata_arena.h"
 #include "map_helpers.h"

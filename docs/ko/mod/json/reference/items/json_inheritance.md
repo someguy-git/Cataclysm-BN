@@ -112,12 +112,12 @@ JSON 데이터의 중복을 줄이기 위해 일부 타입은 기존 타입에�
 
 타입이 copy-from을 지원하는지 확인하려면 generic_factory를 구현했는지 알아야 합니다. 이를 확인하려면 다음을 수행하세요:
 
-- [init.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/init.cpp) 열기
+- [init.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/cpp/init.cpp) 열기
 - 타입을 언급하는 줄을 찾으세요. 예를 들어 `add( "gate", &gates::load );`
 - 로드 함수를 복사하세요. 이 경우 _gates::load_가 됩니다.
 - 이를 [github의 검색 바](https://github.com/cataclysmbn/Cataclysm-BN/search?q=%22gates%3A%3Aload%22&unscoped_q=%22gates%3A%3Aload%22&type=Code)에서 사용하여 _gates::load_를 포함하는 파일을 찾으세요.
-- 검색 결과에서 [gates.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/gates.cpp)를 찾습니다. 열어보세요.
+- 검색 결과에서 [gates.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/cpp/gates.cpp)를 찾습니다. 열어보세요.
 - gates.cpp에서 generic_factory 줄을 찾으세요. 다음과 같이 보입니다:
   `generic_factory<gate_data> gates_data( "gate type", "handle", "other_handles" );`
 - generic_factory 줄이 있으므로 copy-from을 지원한다고 결론을 내릴 수 있습니다.
-- generic_factoy가 없으면 copy-from을 지원하지 않습니다. 예를 들어 vitamin 타입의 경우 (위 단계를 반복하면 [vitamin.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/vitamin.cpp)에 generic_factoy가 포함되어 있지 않음을 알 수 있습니다)
+- generic_factoy가 없으면 copy-from을 지원하지 않습니다. 예를 들어 vitamin 타입의 경우 (위 단계를 반복하면 [vitamin.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/cpp/vitamin.cpp)에 generic_factoy가 포함되어 있지 않음을 알 수 있습니다)

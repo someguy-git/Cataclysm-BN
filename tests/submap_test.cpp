@@ -1,4 +1,4 @@
-#include "../src/map/submap.h"
+#include "../src/cpp/map/submap.h"
 #include "catch/catch.hpp"
 #include "coordinates.h"
 #include "game_constants.h"

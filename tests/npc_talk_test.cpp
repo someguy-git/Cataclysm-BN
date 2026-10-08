@@ -1,5 +1,5 @@
-#include "../src/map/map.h"
-#include "../src/overmap/overmapbuffer.h"
+#include "../src/cpp/map/map.h"
+#include "../src/cpp/overmap/overmapbuffer.h"
 #include "avatar.h"
 #include "calendar.h"
 #include "catch/catch.hpp"

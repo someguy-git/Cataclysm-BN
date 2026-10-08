@@ -10,7 +10,7 @@ sidebar:
 
 ## 자체 JSON 포매터를 사용하는 이유
 
-DDA는 자체 JSON 파서를 작성했습니다. 파서는 `tools/format/format.cpp`에 있으며 `src/json.cpp`을 이용해 JSON을 파싱하고 출력합니다.
+DDA는 자체 JSON 파서를 작성했습니다. 파서는 `tools/format/format.cpp`에 있으며 `src/cpp/json.cpp`을 이용해 JSON을 파싱하고 출력합니다.
 
 이 방식은 기존 JSON 포매터(예: `deno fmt`)를 사용할 수 없게 하므로 최적의 해법은 아니지만, [이전 시도](https://github.com/cataclysmbn/Cataclysm-BN/pull/3118)에서 단점이 장점보다 큰 것으로 확인되었습니다.
 

@@ -3,7 +3,7 @@ name: Validate translation template extraction
 on:
   pull_request:
     paths:
-      - "src/**/*.cpp"
+      - "src/cpp/**/*.cpp"
       - "lang/extract_json_strings.py"
 
 # We only care about the latest revision of a PR, so cancel previous instances.

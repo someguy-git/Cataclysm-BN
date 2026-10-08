@@ -1,6 +1,6 @@
 #include "player_helpers.h"
 
-#include "../src/map/map.h"
+#include "../src/cpp/map/map.h"
 #include "avatar.h"
 #include "bionics.h"
 #include "catch/catch.hpp"

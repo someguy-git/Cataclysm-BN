@@ -1,5 +1,5 @@
-#include "../src/overmap/overmap.h"
-#include "../src/overmap/overmapbuffer.h"
+#include "../src/cpp/overmap/overmap.h"
+#include "../src/cpp/overmap/overmapbuffer.h"
 #include "calendar.h"
 #include "catch/catch.hpp"
 #include "coordinates.h"

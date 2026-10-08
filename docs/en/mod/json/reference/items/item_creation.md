@@ -743,7 +743,7 @@ Artifacts are getting deprecated in favor of relic, avoid using them.
 
 Effects of the artifact when it's in the inventory (main inventory, wielded, or worn) of the player.
 
-Possible values (see src/enums.h for an up-to-date list):
+Possible values (see src/cpp/enums.h for an up-to-date list):
 
 - `AEP_STR_UP` Strength + 4
 - `AEP_DEX_UP` Dexterity + 4
@@ -805,7 +805,7 @@ Possible values are the same as for effects_carried.
 Effects of the artifact when it's activated (which require it to have a `"use_action": "ARTIFACT"`
 and it must have a non-zero max_charges value).
 
-Possible values (see src/artifact.h for an up-to-date list):
+Possible values (see src/cpp/artifact.h for an up-to-date list):
 
 - `AEA_STORM` Emits shock fields
 - `AEA_FIREBALL` Targeted

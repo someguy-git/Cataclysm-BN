@@ -94,11 +94,11 @@ jobs:
           if-no-files-found: error
           path: |
             lang/po
-            src/lang_stats.inc
+            src/cpp/lang_stats.inc
 
       - name: Add summary
         run: |
           echo "## Translation Build Complete" >> "$GITHUB_STEP_SUMMARY"
           echo "Artifact includes:" >> "$GITHUB_STEP_SUMMARY"
           echo "- \`lang/po/\` - Translation files (.po)" >> "$GITHUB_STEP_SUMMARY"
-          echo "- \`src/lang_stats.inc\` - Translation statistics" >> "$GITHUB_STEP_SUMMARY"
+          echo "- \`src/cpp/lang_stats.inc\` - Translation statistics" >> "$GITHUB_STEP_SUMMARY"

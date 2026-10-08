@@ -1,5 +1,5 @@
-#include "../src/map/map.h"
-#include "../src/vehicle/vehicle_part.h"
+#include "../src/cpp/map/map.h"
+#include "../src/cpp/vehicle/vehicle_part.h"
 #include "catch/catch.hpp"
 #include "character.h"
 #include "debug.h"

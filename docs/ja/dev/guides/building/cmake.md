@@ -466,7 +466,7 @@ Transifex へのアクセス権がない場合は、翻訳ワークフローが�
 
 1. [Actions](https://github.com/cataclysmbn/Cataclysm-BN/actions) で最近成功したワークフロー実行を開きます
 2. `translations` アーティファクトをダウンロードします
-3. `lang/po` と `src/lang_stats.inc` をローカルチェックアウトに展開します
+3. `lang/po` と `src/cpp/lang_stats.inc` をローカルチェックアウトに展開します
 4. 通常どおり `-DLANGUAGES=all` でビルドします
 
 > [!NOTE]

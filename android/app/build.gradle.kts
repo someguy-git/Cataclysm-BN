@@ -152,7 +152,7 @@ val compileLocalization by tasks.registering(Exec::class) {
     }
 }
 
-val shaderSourceDir = rootProject.file("../src/shaders")
+val shaderSourceDir = rootProject.file("../src/cpp/shaders")
 val shaderOutputDir = rootProject.file("../data/shaders")
 val compileAndroidShaders by tasks.registering {
     val shaderInputs = fileTree(shaderSourceDir) { include("*.hlsl") }

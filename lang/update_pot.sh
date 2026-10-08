@@ -27,8 +27,8 @@ SOURCE_FILES=$(mktemp) || exit 1
 
 trap 'rm -f "$SOURCE_FILES"' 0 # Gets rid of "$SOURCE_FILES" on exit
 
-if ! find src \
-  \( -path src/lua -o -path src/sol -o -path src/third-party \) -prune -o \
+if ! find src/cpp \
+  \( -path src/cpp/lua -o -path src/cpp/sol -o -path src/cpp/third-party \) -prune -o \
   -type f \( -name '*.cpp' -o -name '*.h' \) -print > "$SOURCE_FILES"; then # Should probably use a constant to point to folders/files that shouldn't be targeted.
     echo "Failed to discover source files." >&2
     exit 1

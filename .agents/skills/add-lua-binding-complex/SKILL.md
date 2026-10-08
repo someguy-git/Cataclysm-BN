@@ -29,7 +29,7 @@ Before you start, determine:
 
 ### 1. Add Luna Documentation Macro
 
-In `src/catalua_luna_doc.h`:
+In `src/cpp/catalua_luna_doc.h`:
 
 ```cpp
 // For regular class
@@ -116,7 +116,7 @@ auto cata::detail::reg_my_domain( sol::state &lua ) -> void
 
 ### 5. Register in Main Binding Function
 
-In `src/catalua_bindings.h`:
+In `src/cpp/catalua_bindings.h`:
 
 ```cpp
 namespace cata::detail {
@@ -124,7 +124,7 @@ namespace cata::detail {
 }
 ```
 
-In `src/catalua_bindings.cpp`, in `reg_all_bindings()`:
+In `src/cpp/catalua_bindings.cpp`, in `reg_all_bindings()`:
 
 ```cpp
 void cata::detail::reg_all_bindings( sol::state &lua ) {
@@ -357,15 +357,15 @@ luna::set_fx( ut, "to_gram", &units::to_gram<std::int64_t> );
 
 ## Files to Modify
 
-1. `src/catalua_luna_doc.h` - Add LUNA_* macro
-2. `src/catalua_bindings_*.cpp` - Implementation (choose or create)
-3. `src/catalua_bindings.h` - Declare registration function
-4. `src/catalua_bindings.cpp` - Call registration in `reg_all_bindings()`
+1. `src/cpp/catalua_luna_doc.h` - Add LUNA_* macro
+2. `src/cpp/catalua_bindings_*.cpp` - Implementation (choose or create)
+3. `src/cpp/catalua_bindings.h` - Declare registration function
+4. `src/cpp/catalua_bindings.cpp` - Call registration in `reg_all_bindings()`
 
 ## Reference Files
 
-- Example complex class: `src/catalua_bindings_creature.cpp` (Character, Creature)
-- Example with items: `src/catalua_bindings_item.cpp`
-- Luna system: `src/catalua_luna.h`
-- Utility macros: `src/catalua_bindings_utils.h`
+- Example complex class: `src/cpp/catalua_bindings_creature.cpp` (Character, Creature)
+- Example with items: `src/cpp/catalua_bindings_item.cpp`
+- Luna system: `src/cpp/catalua_luna.h`
+- Utility macros: `src/cpp/catalua_bindings_utils.h`
 - Integration docs: `docs/en/mod/lua/explanation/lua_integration.md`

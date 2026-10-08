@@ -113,7 +113,7 @@ git_describe(GIT_VERSION --tags --always --match "[0-9A-Z]*.[0-9A-Z]*")
 if (NOT "${GIT_VERSION}" MATCHES "GIT-NOTFOUND")
     string(REPLACE "-NOTFOUND" "" GIT_VERSION ${GIT_VERSION})
     string(TIMESTAMP _timestamp %Y-%m-%d-%H%M)
-    file(WRITE ${CMAKE_SOURCE_DIR}/src/version.h
+    file(WRITE ${CMAKE_SOURCE_DIR}/src/cpp/version.h
          "// NOLINT(cata-header-guard)\n\#define VERSION \"${GIT_VERSION}\"\n\#define BUILD_TIMESTAMP \"${_timestamp}\"\n")
     message(STATUS "${PROJECT_NAME} build version is: ${GIT_VERSION}")
     add_definitions(-DGIT_VERSION)
@@ -239,8 +239,8 @@ else ()
             set(CMAKE_INSTALL_DATAROOTDIR "${CMAKE_INSTALL_PREFIX}/share/cataclysm-bn")
             add_definitions(-DPREFIX=${CMAKE_INSTALL_PREFIX})
             configure_file(
-                "${CMAKE_SOURCE_DIR}/src/prefix.h.in"
-                "${CMAKE_SOURCE_DIR}/src/prefix.h"
+                "${CMAKE_SOURCE_DIR}/src/cpp/prefix.h.in"
+                "${CMAKE_SOURCE_DIR}/src/cpp/prefix.h"
                 @ONLY)
             add_definitions(-DDATA_DIR_PREFIX)
         endif ()
@@ -522,7 +522,7 @@ if (CATA_SDL)
     file(MAKE_DIRECTORY "${CMAKE_SOURCE_DIR}/data/shaders")
 
     file(GLOB_RECURSE CATA_HLSL_SOURCES CONFIGURE_DEPENDS
-         "${CMAKE_SOURCE_DIR}/src/shaders/*.hlsl")
+         "${CMAKE_SOURCE_DIR}/src/cpp/shaders/*.hlsl")
 
     if (SHADERCROSS_EXE)
         set(CATA_SHADERS ON)
@@ -860,7 +860,53 @@ if (CCACHE_FOUND AND CATA_CCACHE)
     set(CMAKE_CXX_LINKER_LAUNCHER   ${CATA_CCACHE_CMD})
 endif ()
 
-add_subdirectory(src)
+# --- Rust foundation (Phase 0) ---
+# The Rust crates live under src/ and are built by Cargo into a static library
+# that the C++ game links against. The Cargo workspace root is Cargo.toml at the
+# repository root. See docs/en/dev/design/rust-rewrite.md for the migration plan.
+option(CATA_RUST "Build and link the Rust foundation crates" ON)
+if (CATA_RUST AND NOT CMAKE_CROSSCOMPILING)
+    find_program(CARGO_EXECUTABLE cargo)
+    if (NOT CARGO_EXECUTABLE)
+        message(WARNING "cargo not found; building without the Rust crates (CATA_RUST=OFF)")
+        set(CATA_RUST OFF)
+    endif ()
+endif ()
+
+if (CATA_RUST)
+    set(CATA_RUST_TARGET_DIR "${CMAKE_SOURCE_DIR}/target")
+    if ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+        set(CATA_RUST_PROFILE_DIR "debug")
+        set(CATA_RUST_CARGO_ARGS "")
+    else ()
+        set(CATA_RUST_PROFILE_DIR "release")
+        set(CATA_RUST_CARGO_ARGS "--release")
+    endif ()
+    set(CATA_RUST_LIB
+        "${CATA_RUST_TARGET_DIR}/${CATA_RUST_PROFILE_DIR}/${CMAKE_STATIC_LIBRARY_PREFIX}cata_ffi${CMAKE_STATIC_LIBRARY_SUFFIX}")
+
+    add_custom_target(cata_rust_build ALL
+        COMMAND ${CMAKE_COMMAND} -E env "CARGO_TARGET_DIR=${CATA_RUST_TARGET_DIR}"
+                ${CARGO_EXECUTABLE} build --manifest-path "${CMAKE_SOURCE_DIR}/Cargo.toml"
+                ${CATA_RUST_CARGO_ARGS}
+        BYPRODUCTS "${CATA_RUST_LIB}"
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        COMMENT "Building Rust crates (cargo build)"
+        VERBATIM)
+
+    add_library(cata_rust STATIC IMPORTED GLOBAL)
+    set_target_properties(cata_rust PROPERTIES IMPORTED_LOCATION "${CATA_RUST_LIB}")
+    add_dependencies(cata_rust cata_rust_build)
+
+    # Rust staticlibs may pull in system libraries on some platforms.
+    if (UNIX AND NOT APPLE)
+        target_link_libraries(cata_rust INTERFACE dl pthread m)
+    elseif (APPLE)
+        target_link_libraries(cata_rust INTERFACE "-framework CoreFoundation" "-framework Security")
+    endif ()
+endif ()
+
+add_subdirectory(src/cpp)
 add_subdirectory(data)
 
 if (UNIX AND DYNAMIC_LINKING)

@@ -452,7 +452,7 @@ oxytorch: {
 
 #### `examine_action`
 
-(省略可) オブジェクトを調べたときに呼び出される JSON 関数です。`src/iexamine.h` を参照してください。
+(省略可) オブジェクトを調べたときに呼び出される JSON 関数です。`src/cpp/iexamine.h` を参照してください。
 
 #### `close" And "open`
 

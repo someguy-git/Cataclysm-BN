@@ -28,7 +28,7 @@ Android에서는 USB 디버깅을 켠 ARM64 기기를 연결하고 `adb devices`
 
 ## 코드 스타일 (C++)
 
-C++ 포매팅은 top-level `src/*.cpp`와 `src/*.h`에만 [Artistic Style](http://astyle.sourceforge.net/)을 사용합니다. 대부분의 다른 C++ 파일은 [clang-format](https://clang.llvm.org/docs/ClangFormat.html)을 사용합니다. `tools/clang-tidy-plugin/test/` 같은 포매터에 민감한 fixture는 변경하지 않습니다. 파일별 도구 선택은 저장소 helper에 맡기세요.
+C++ 포매팅은 top-level `src/cpp/*.cpp`와 `src/cpp/*.h`에만 [Artistic Style](http://astyle.sourceforge.net/)을 사용합니다. 대부분의 다른 C++ 파일은 [clang-format](https://clang.llvm.org/docs/ClangFormat.html)을 사용합니다. `tools/clang-tidy-plugin/test/` 같은 포매터에 민감한 fixture는 변경하지 않습니다. 파일별 도구 선택은 저장소 helper에 맡기세요.
 
 ### C++ 포매팅 호출
 
@@ -56,7 +56,7 @@ just hooks-setup
 
 ### Visual Studio용 Astyle 확장
 
-top-level `src/*.cpp`와 `src/*.h`에만 사용하세요. 저장소 스타일에는 `just fmt-cpp`를 사용하세요.
+top-level `src/cpp/*.cpp`와 `src/cpp/*.h`에만 사용하세요. 저장소 스타일에는 `just fmt-cpp`를 사용하세요.
 Visual Studio Marketplace에 astyle 확장이 있지만 VS2019 또는 VS2022에서 우리 목적으로 올바르게 작동하는 것으로 (아직) 확인된 것은 없습니다.
 
 #### Visual Studio 2022
@@ -164,13 +164,13 @@ sudo dnf install clang-devel llvm-devel clang-tools-extra-devel
 단일 파일에서 플러그인을 실행하려면 프로젝트 루트에서 다음 명령을 실행합니다:
 
 ```sh
-$ ./build-scripts/clang-tidy-wrapper.sh -fix src/achievement.cpp
+$ ./build-scripts/clang-tidy-wrapper.sh -fix src/cpp/achievement.cpp
 ```
 
 여러 파일에서 플러그인을 실행하려면 [GNU parallel](https://www.gnu.org/software/parallel/)을 사용합니다:
 
 ```sh
-$ parallel ./build-scripts/clang-tidy-wrapper.sh -fix ::: src/*.cpp
+$ parallel ./build-scripts/clang-tidy-wrapper.sh -fix ::: src/cpp/*.cpp
 ```
 
 ## include-what-you-use
@@ -198,7 +198,7 @@ IWYU는 때때로 clang-tidy가 좋아하지 않는 C 스타일 라이브러리 
 - IWYU에는 [연관된 헤더](https://github.com/include-what-you-use/include-what-you-use/blob/master/docs/IWYUPragmas.md#iwyu-pragma-associated) 개념이 있으며 각 cpp 파일은 이러한 헤더의 일부를 가질 수 있습니다. cpp 파일은 해당 헤더에 선언된 것을 정의할 것으로 예상됩니다. Cata에서 헤더와 cpp 파일 간의 매핑은 그렇게 간단하지 않으므로 여러 연관된 헤더가 있는 파일과 없는 파일이 있습니다. 어떤 cpp 파일의 연관된 헤더도 아닌 헤더는 include가 업데이트되지 않아 빌드가 깨질 수 있으므로 모든 헤더가 일부 cpp 파일과 연관되는 것이 이상적입니다. 다음 명령을 사용하여 현재 cpp 파일과 연관되지 않은 헤더 목록을 얻을 수 있습니다 (GNU sed 필요):
 
 ```sh
-diff <(ls src/*.h | sed 's!.*/!!') <(for i in src/*.cpp; do echo $i; sed -n '/^#include/{p; :loop n; p; /^$/q; b loop}' $i; done | grep 'e "' | grep -o '"[^"]*"' | sort -u | tr -d '"')
+diff <(ls src/cpp/*.h | sed 's!.*/!!') <(for i in src/cpp/*.cpp; do echo $i; sed -n '/^#include/{p; :loop n; p; /^$/q; b loop}' $i; done | grep 'e "' | grep -o '"[^"]*"' | sort -u | tr -d '"')
 ```
 
 - [clang 버그](https://bugs.llvm.org/show_bug.cgi?id=20666)로 인해 명시적 인스턴스화에 대한 템플릿 인수의 사용이 계산되지 않아 일부 `IWYU pragma: keep`가 필요합니다.

@@ -46,7 +46,7 @@ The first 7 rows have some header data. The bulk of the calculation starts on ro
 
 The weapons were evaluated using a Strength 10, Dexterity 10, Perception 10 survivor with skill 4 in
 all weapons. The base hit, stat crit, skill crit, bash mult, cut mult, and stab mult values are
-derived from the relevant bits of src/melee.cpp.
+derived from the relevant bits of src/cpp/melee.cpp.
 
 - Columnn A "Average" is the new weapon evaluation value for the weapon, on the edge of the sheet
   for easy reference.

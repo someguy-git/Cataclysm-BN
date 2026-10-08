@@ -70,7 +70,7 @@
 #include <utility>
 #include <vector>
 
-#include "../src/platform_win.h"
+#include "../src/cpp/platform_win.h"
 
 #if defined(TILES)
 #   include <SDL3/SDL.h>

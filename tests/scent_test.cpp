@@ -1,5 +1,5 @@
 
-#include "../src/map/map.h"
+#include "../src/cpp/map/map.h"
 #include "catch/catch.hpp"
 #include "game.h"
 #include "map_helpers.h"

@@ -24,7 +24,7 @@ Lua API functions are organized into libraries (namespaces):
 
 ### 1. Create or Extend Library Registration Function
 
-In appropriate `src/catalua_bindings_*.cpp` file:
+In appropriate `src/cpp/catalua_bindings_*.cpp` file:
 
 ```cpp
 auto cata::detail::reg_my_api( sol::state &lua ) -> void
@@ -199,7 +199,7 @@ auto cata::detail::reg_constants( sol::state &lua ) -> void
 
 ### 3. Register in Main Binding
 
-In `src/catalua_bindings.h`:
+In `src/cpp/catalua_bindings.h`:
 
 ```cpp
 namespace cata::detail {
@@ -207,7 +207,7 @@ namespace cata::detail {
 }
 ```
 
-In `src/catalua_bindings.cpp` in `reg_all_bindings()`:
+In `src/cpp/catalua_bindings.cpp` in `reg_all_bindings()`:
 
 ```cpp
 reg_my_api( lua );
@@ -433,6 +433,6 @@ luna::set_fx( lib, "create_item_builder",
 
 ## References
 
-- Existing APIs: `src/catalua_bindings_game.cpp`
-- Utility functions: `src/catalua_bindings.cpp`
-- Luna library API: `src/catalua_luna.h`
+- Existing APIs: `src/cpp/catalua_bindings_game.cpp`
+- Utility functions: `src/cpp/catalua_bindings.cpp`
+- Luna library API: `src/cpp/catalua_luna.h`

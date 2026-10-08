@@ -10,7 +10,7 @@
 
 ## 現在のアーキテクチャ
 
-### 車両操作画面（`src/vehicle/veh_interact.cpp`）
+### 車両操作画面（`src/cpp/vehicle/veh_interact.cpp`）
 
 現在の `display_veh()` 関数（2284行目）は ASCII 描画を使用します:
 
@@ -42,7 +42,7 @@ void veh_interact::display_veh()
 
 ### タイル描画システム
 
-**中心となるクラス**: `cata_tiles`（`src/cata_tiles.cpp`）
+**中心となるクラス**: `cata_tiles`（`src/cpp/cata_tiles.cpp`）
 
 **車両部品の描画**（`draw_vpart()`、3612行目）:
 
@@ -67,7 +67,7 @@ bool cata_tiles::draw_vpart( const tripoint &p, lit_level ll, int &height_3d,
 - **サブタイル**: 0（通常）、`open_`（開いたドア）、`broken`（損傷）
 - **回転**: `veh.face.dir()` の角度
 
-### テンプレート: キャラクタープレビュー（`src/character_preview.cpp`）
+### テンプレート: キャラクタープレビュー（`src/cpp/character_preview.cpp`）
 
 このファイルは、メインマップ外の UI 画面でタイルを描画する方法を示します:
 
@@ -102,7 +102,7 @@ public:
 
 ### 1.1 車両プレビューアダプタークラスの作成
 
-**ファイル**: `src/vehicle/vehicle_preview.h` / `src/vehicle/vehicle_preview.cpp`
+**ファイル**: `src/cpp/vehicle/vehicle_preview.h` / `src/cpp/vehicle/vehicle_preview.cpp`
 
 ```cpp
 #if defined(TILES)
@@ -145,7 +145,7 @@ private:
 
 ### 1.2 グラフィックスオプションの追加
 
-**ファイル**: `src/options.cpp`
+**ファイル**: `src/cpp/options.cpp`
 
 `add_options_graphics()` に新しいオプションを追加します:
 
@@ -165,7 +165,7 @@ private:
 
 ### 1.3 `veh_interact` クラスの変更
 
-**ファイル**: `src/vehicle/veh_interact.h`
+**ファイル**: `src/cpp/vehicle/veh_interact.h`
 
 メンバーを追加します:
 
@@ -185,7 +185,7 @@ private:
 
 ### 1.4 `display_veh_tiles()` の実装
 
-**ファイル**: `src/vehicle/veh_interact.cpp`
+**ファイル**: `src/cpp/vehicle/veh_interact.cpp`
 
 ```cpp
 #if defined(TILES)
@@ -267,14 +267,14 @@ void vehicle_preview_window::display( const vehicle &veh, point cursor_offset,
 
 ### 新規ファイル
 
-- `src/vehicle/vehicle_preview.h` - タイルプレビューアダプタークラス
-- `src/vehicle/vehicle_preview.cpp` - タイルプレビューの実装
+- `src/cpp/vehicle/vehicle_preview.h` - タイルプレビューアダプタークラス
+- `src/cpp/vehicle/vehicle_preview.cpp` - タイルプレビューの実装
 
 ### 変更ファイル
 
-- `src/vehicle/veh_interact.h` - タイルプレビューメンバーを追加
-- `src/vehicle/veh_interact.cpp` - タイル表示を統合
-- `src/options.cpp` - `VEHICLE_EDIT_TILES` オプションを追加
+- `src/cpp/vehicle/veh_interact.h` - タイルプレビューメンバーを追加
+- `src/cpp/vehicle/veh_interact.cpp` - タイル表示を統合
+- `src/cpp/options.cpp` - `VEHICLE_EDIT_TILES` オプションを追加
 - `CMakeLists.txt` - 新しいソースファイルを追加
 
 ### オプション

@@ -1,4 +1,4 @@
-#include "../src/overmap/simple_pathfinding.h"
+#include "../src/cpp/overmap/simple_pathfinding.h"
 #include "catch/catch.hpp"
 #include "coordinates.h"
 #include "cuboid_rectangle.h"

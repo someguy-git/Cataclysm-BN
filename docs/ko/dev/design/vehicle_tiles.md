@@ -10,7 +10,7 @@
 
 ## 현재 아키텍처
 
-### 차량 상호작용 화면 (`src/vehicle/veh_interact.cpp`)
+### 차량 상호작용 화면 (`src/cpp/vehicle/veh_interact.cpp`)
 
 현재 `display_veh()` 함수(2284번째 줄)는 ASCII 렌더링을 사용합니다:
 
@@ -42,7 +42,7 @@ void veh_interact::display_veh()
 
 ### 타일 렌더링 시스템
 
-**핵심 클래스**: `cata_tiles` (`src/cata_tiles.cpp`)
+**핵심 클래스**: `cata_tiles` (`src/cpp/cata_tiles.cpp`)
 
 **차량 파트 렌더링** (`draw_vpart()`, 3612번째 줄):
 
@@ -67,7 +67,7 @@ bool cata_tiles::draw_vpart( const tripoint &p, lit_level ll, int &height_3d,
 - **서브타일**: 0 (정상), `open_` (열린 문), `broken` (손상됨)
 - **회전**: `veh.face.dir()`의 각도
 
-### 템플릿: 캐릭터 미리보기 (`src/character_preview.cpp`)
+### 템플릿: 캐릭터 미리보기 (`src/cpp/character_preview.cpp`)
 
 이 파일은 메인 맵 외부의 UI 화면에서 타일을 렌더링하는 방법을 보여줍니다:
 
@@ -102,7 +102,7 @@ public:
 
 ### 1.1 차량 미리보기 어댑터 클래스 생성
 
-**파일**: `src/vehicle/vehicle_preview.h` / `src/vehicle/vehicle_preview.cpp`
+**파일**: `src/cpp/vehicle/vehicle_preview.h` / `src/cpp/vehicle/vehicle_preview.cpp`
 
 ```cpp
 #if defined(TILES)
@@ -145,7 +145,7 @@ private:
 
 ### 1.2 그래픽 옵션 추가
 
-**파일**: `src/options.cpp`
+**파일**: `src/cpp/options.cpp`
 
 `add_options_graphics()`에 새 옵션 추가:
 
@@ -165,7 +165,7 @@ private:
 
 ### 1.3 `veh_interact` 클래스 수정
 
-**파일**: `src/vehicle/veh_interact.h`
+**파일**: `src/cpp/vehicle/veh_interact.h`
 
 멤버 추가:
 
@@ -185,7 +185,7 @@ private:
 
 ### 1.4 `display_veh_tiles()` 구현
 
-**파일**: `src/vehicle/veh_interact.cpp`
+**파일**: `src/cpp/vehicle/veh_interact.cpp`
 
 ```cpp
 #if defined(TILES)
@@ -267,14 +267,14 @@ void vehicle_preview_window::display( const vehicle &veh, point cursor_offset,
 
 ### 새 파일
 
-- `src/vehicle/vehicle_preview.h` - 타일 미리보기 어댑터 클래스
-- `src/vehicle/vehicle_preview.cpp` - 타일 미리보기 구현
+- `src/cpp/vehicle/vehicle_preview.h` - 타일 미리보기 어댑터 클래스
+- `src/cpp/vehicle/vehicle_preview.cpp` - 타일 미리보기 구현
 
 ### 수정된 파일
 
-- `src/vehicle/veh_interact.h` - 타일 미리보기 멤버 추가
-- `src/vehicle/veh_interact.cpp` - 타일 디스플레이 통합
-- `src/options.cpp` - `VEHICLE_EDIT_TILES` 옵션 추가
+- `src/cpp/vehicle/veh_interact.h` - 타일 미리보기 멤버 추가
+- `src/cpp/vehicle/veh_interact.cpp` - 타일 디스플레이 통합
+- `src/cpp/options.cpp` - `VEHICLE_EDIT_TILES` 옵션 추가
 - `CMakeLists.txt` - 새 소스 파일 추가
 
 ### 옵션

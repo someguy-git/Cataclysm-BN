@@ -27,7 +27,7 @@ Cataclysm: Bright Nights에서 코드를 포맷하고 린트하는 방법을 설
 
 ## C++ 포매팅
 
-Top-level `src/*.cpp`와 `src/*.h` 파일은 [astyle](http://astyle.sourceforge.net/)을 사용합니다. 대부분의 다른 C++ 파일은 [clang-format](https://clang.llvm.org/docs/ClangFormat.html)을 사용합니다. `tools/clang-tidy-plugin/test/` 같은 포매터에 민감한 fixture는 변경하지 않습니다.
+Top-level `src/cpp/*.cpp`와 `src/cpp/*.h` 파일은 [astyle](http://astyle.sourceforge.net/)을 사용합니다. 대부분의 다른 C++ 파일은 [clang-format](https://clang.llvm.org/docs/ClangFormat.html)을 사용합니다. `tools/clang-tidy-plugin/test/` 같은 포매터에 민감한 fixture는 변경하지 않습니다.
 
 ```sh
 # 포매터 설치 (Ubuntu/Debian)

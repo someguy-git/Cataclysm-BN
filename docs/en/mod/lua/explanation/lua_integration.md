@@ -8,13 +8,13 @@ BN uses Lua 5.3.6 to run scripts and relies on sol2 v3.3.0 for bindings on C++ s
 
 ### Lua source files
 
-To simplify build setup and improve portability we bundle `Lua 5.3.6` source code in `src/lua/`
+To simplify build setup and improve portability we bundle `Lua 5.3.6` source code in `src/cpp/lua/`
 directory and have the build systems compile it and link into the game executable and library for
 tests.
 
 ### Sol2 source files
 
-Sol2 makes it easy to bundle, we have `sol2 v3.3.0` single-header amalgamated version in `src/sol/`
+Sol2 makes it easy to bundle, we have `sol2 v3.3.0` single-header amalgamated version in `src/cpp/sol/`
 and just include it as needed. The header is quite large, so the less source files include it the
 better.
 
@@ -27,7 +27,7 @@ better.
 
 All Lua-related game source files have the `catalua` prefix.
 
-If you want to add new bindings, consider looking at existing examples in `src/catalua_bindings.cpp`
+If you want to add new bindings, consider looking at existing examples in `src/cpp/catalua_bindings.cpp`
 and reading relevant part of Sol2 docs.
 
 - `catalua.h` (and `catalua.cpp`) - Main Lua interface. It's the only header most of the codebase

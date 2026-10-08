@@ -112,14 +112,14 @@ Mod制作者は `"delete"` フィールドを追加することもできます�
 
 あるタイプが copy-from をサポートしているかを知るには、そのタイプが generic_factory を実装しているかどうかを確認する必要があります。これを確認するには、以下の手順を行ってください:
 
-- [init.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/init.cpp)を開きます。
+- [init.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/cpp/init.cpp)を開きます。
 - 調べたいタイプが記述されている行を探します。gate(門)タイプなら、
   例えば、`add( "gate", &gates::load );`のような行が見つかります。
 - そのロード関数名(この例では gates::load)をコピーします。
 - [Github検索バー](https://github.com/cataclysmbn/Cataclysm-BN/search?q=%22gates%3A%3Aload%22&unscoped_q=%22gates%3A%3Aload%22&type=Code)
   にその関数名を入力し、_gates::load_が定義されているソースファイルを検索します。
 - 検索結果から
-  [gates.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/gates.cpp)を見つけて開きます。
+  [gates.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/cpp/gates.cpp)を見つけて開きます。
 - gates.cpp内で generic_factory という記述がある行を探します。以下のよう
   な形式で見つかるはずです:
   `generic_factory<gate_data> gates_data( "gate type", "handle", "other_handles" );`
@@ -128,4 +128,4 @@ Mod制作者は `"delete"` フィールドを追加することもできます�
 - もし generic_factoy が見つからなければ、copy-fromには対応していませ
   ん。例えば
   vitamin (ビタミン)タイプで同じ手順を踏むと、
-  [vitamin.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/vitamin.cpp) には generic_factoyが存在しないことがわかります。
+  [vitamin.cpp](https://github.com/cataclysmbn/Cataclysm-BN/tree/main/src/cpp/vitamin.cpp) には generic_factoyが存在しないことがわかります。

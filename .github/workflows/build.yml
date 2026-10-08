@@ -393,7 +393,7 @@ jobs:
         env:
           CATA_EXE: ./cataclysm-bn-tiles
         run: |
-          ln -sf build/src/cataclysm-bn-tiles ./cataclysm-bn-tiles
+          ln -sf build/src/cpp/cataclysm-bn-tiles ./cataclysm-bn-tiles
           deno task docs:gen
 
       - name: Run EmmyLua check
@@ -406,7 +406,7 @@ jobs:
         env:
           CATA_EXE: ./cataclysm-bn-tiles
         run: |
-          ln -sf build/src/cataclysm-bn-tiles ./cataclysm-bn-tiles
+          ln -sf build/src/cpp/cataclysm-bn-tiles ./cataclysm-bn-tiles
           deno task docs:gen
 
       - name: Upload documentation artifact
@@ -570,7 +570,7 @@ jobs:
       - name: Archive PDB (windows msvc)
         if: runner.os == 'Windows' && inputs.package-artifacts && (!inputs.upload-artifacts || matrix.upload-artifact == true)
         run: |
-          $pdb = "${{ github.workspace }}/out/build/windows-tiles-sounds-x64-msvc/src/cataclysm-bn-tiles.pdb"
+          $pdb = "${{ github.workspace }}/out/build/windows-tiles-sounds-x64-msvc/src/cpp/cataclysm-bn-tiles.pdb"
           $archive = "cbn-${{ matrix.artifact }}-${{ inputs.version-label }}-pdb.zip"
           if (!(Test-Path $pdb)) {
             throw "Missing Windows release PDB: $pdb"

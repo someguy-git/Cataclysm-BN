@@ -1,0 +1,12 @@
+[package]
+name = "cata-json"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lib]
+name = "cata_json"
+
+[dependencies]
+serde_json.workspace = true

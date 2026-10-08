@@ -1,4 +1,4 @@
-#include "../src/overmap/overmapbuffer.h"
+#include "../src/cpp/overmap/overmapbuffer.h"
 #include "avatar.h"
 #include "catch/catch.hpp"
 #include "coordinates.h"

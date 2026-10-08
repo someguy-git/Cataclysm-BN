@@ -466,7 +466,7 @@ Transifex 접근 권한이 없다면 번역 워크플로에서 생성한 아티�
 
 1. [Actions](https://github.com/cataclysmbn/Cataclysm-BN/actions)에서 최근 성공한 워크플로 실행을 엽니다
 2. `translations` 아티팩트를 다운로드합니다
-3. `lang/po`와 `src/lang_stats.inc`를 로컬 체크아웃에 압축 해제합니다
+3. `lang/po`와 `src/cpp/lang_stats.inc`를 로컬 체크아웃에 압축 해제합니다
 4. `-DLANGUAGES=all`로 평소처럼 빌드합니다
 
 > [!NOTE]
