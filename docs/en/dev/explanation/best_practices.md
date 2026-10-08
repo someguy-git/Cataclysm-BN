@@ -46,7 +46,7 @@ Some tips here:
   compiler only needs to know there exists a type named `vehicle`, not its internal details. Adding
   `class vehicle;` declaration in `character.h` is enough in this case.
 - It's possible to use `pointer-to-implementation` idiom for class members to remove the need for
-  the definition, see `src/pimpl.h` for implementation and explanation. There are many usage
+  the definition, see `src/cpp/pimpl.h` for implementation and explanation. There are many usage
   examples in the codebase (mainly `game.h`), but the overall idea is to replace class member with a
   pointer, and only require definition when accessing the member through pointer. This incurs a tiny
   performance overhead, but it's unnoticeable in most cases.

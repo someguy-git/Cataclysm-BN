@@ -45,7 +45,7 @@ so copy any saves you want to keep elsewhere. Android saves remain on the device
 ## Code style (C++)
 
 C++ formatting uses [Artistic Style](http://astyle.sourceforge.net/) only for top-level
-`src/*.cpp` and `src/*.h`. Most other C++ files use
+`src/cpp/*.cpp` and `src/cpp/*.h`. Most other C++ files use
 [clang-format](https://clang.llvm.org/docs/ClangFormat.html). Formatter-sensitive fixtures such as
 `tools/clang-tidy-plugin/test/` are left unchanged. Use the repository helpers so each file goes
 through the right formatter.
@@ -76,7 +76,7 @@ just hooks-setup
 
 ### Astyle extensions for Visual Studio
 
-Use these only for top-level `src/*.cpp` and `src/*.h`; use `just fmt-cpp` for repository style.
+Use these only for top-level `src/cpp/*.cpp` and `src/cpp/*.h`; use `just fmt-cpp` for repository style.
 There are astyle extensions in the Visual Studio Marketplace, but none of them have been confirmed
 (yet) to correctly work for our purposes on VS2019 or VS2022.
 
@@ -213,13 +213,13 @@ add `CATA_CLANG_TIDY_PLUGIN=ON` to cmake flags when configuring the build.
 To run the plugin on a single file, run following command on project root:
 
 ```sh
-$ ./build-scripts/clang-tidy-wrapper.sh -fix src/achievement.cpp
+$ ./build-scripts/clang-tidy-wrapper.sh -fix src/cpp/achievement.cpp
 ```
 
 To run the plugin on multiple files, use [GNU parallel](https://www.gnu.org/software/parallel/):
 
 ```sh
-$ parallel ./build-scripts/clang-tidy-wrapper.sh -fix ::: src/*.cpp
+$ parallel ./build-scripts/clang-tidy-wrapper.sh -fix ::: src/cpp/*.cpp
 ```
 
 ## include-what-you-use
@@ -267,7 +267,7 @@ We have to use IWYU pragmas in some situations. Some of the reasons are:
   (requires GNU sed):
 
 ```sh
-diff <(ls src/*.h | sed 's!.*/!!') <(for i in src/*.cpp; do echo $i; sed -n '/^#include/{p; :loop n; p; /^$/q; b loop}' $i; done | grep 'e "' | grep -o '"[^"]*"' | sort -u | tr -d '"')
+diff <(ls src/cpp/*.h | sed 's!.*/!!') <(for i in src/cpp/*.cpp; do echo $i; sed -n '/^#include/{p; :loop n; p; /^$/q; b loop}' $i; done | grep 'e "' | grep -o '"[^"]*"' | sort -u | tr -d '"')
 ```
 
 - Due to a [clang bug](https://bugs.llvm.org/show_bug.cgi?id=20666), uses in template arguments to

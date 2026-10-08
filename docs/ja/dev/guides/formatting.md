@@ -27,7 +27,7 @@ title: Formatting & Linting
 
 ## C++ のフォーマット
 
-トップレベルの `src/*.cpp` と `src/*.h` ファイルは [astyle](http://astyle.sourceforge.net/) を使います。他のほとんどの C++ ファイルは [clang-format](https://clang.llvm.org/docs/ClangFormat.html) を使います。`tools/clang-tidy-plugin/test/` のようなフォーマッタ依存の fixture は変更しません。
+トップレベルの `src/cpp/*.cpp` と `src/cpp/*.h` ファイルは [astyle](http://astyle.sourceforge.net/) を使います。他のほとんどの C++ ファイルは [clang-format](https://clang.llvm.org/docs/ClangFormat.html) を使います。`tools/clang-tidy-plugin/test/` のようなフォーマッタ依存の fixture は変更しません。
 
 ```sh
 # フォーマッタのインストール (Ubuntu/Debian)

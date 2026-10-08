@@ -493,7 +493,7 @@ ml" or "2 L"
 
 #### `examine_action`
 
-(Optional) The json function that is called when the object is examined. See "src/iexamine.h".
+(Optional) The json function that is called when the object is examined. See "src/cpp/iexamine.h".
 
 #### `close" And "open`
 

@@ -487,7 +487,7 @@ If you do not have Transifex access, use the artifact produced by the translatio
 
 1. Open a recent successful workflow run in [Actions](https://github.com/cataclysmbn/Cataclysm-BN/actions)
 2. Download the `translations` artifact
-3. Extract `lang/po` and `src/lang_stats.inc` into your local checkout
+3. Extract `lang/po` and `src/cpp/lang_stats.inc` into your local checkout
 4. Build normally with `-DLANGUAGES=all`
 
 > [!NOTE]

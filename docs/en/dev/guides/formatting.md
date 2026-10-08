@@ -28,7 +28,7 @@ style violations, a commit will be pushed to fix them.
 
 ## C++ Formatting
 
-Top-level `src/*.cpp` and `src/*.h` files use [astyle](http://astyle.sourceforge.net/). Most other C++ files use [clang-format](https://clang.llvm.org/docs/ClangFormat.html). Formatter-sensitive fixtures such as `tools/clang-tidy-plugin/test/` are left unchanged.
+Top-level `src/cpp/*.cpp` and `src/cpp/*.h` files use [astyle](http://astyle.sourceforge.net/). Most other C++ files use [clang-format](https://clang.llvm.org/docs/ClangFormat.html). Formatter-sensitive fixtures such as `tools/clang-tidy-plugin/test/` are left unchanged.
 
 ```sh
 # Install formatters (Ubuntu/Debian)

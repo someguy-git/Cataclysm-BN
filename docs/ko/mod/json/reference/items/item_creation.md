@@ -732,7 +732,7 @@ CBM은 다음과 같이 정의할 수 있습니다.
 
 플레이어의 인벤토리(주 인벤토리, 착용 또는 착용)에 있는 유물의 효과입니다.
 
-가능한 값(최신 목록은 src/enums.h 참조):
+가능한 값(최신 목록은 src/cpp/enums.h 참조):
 
 - `AEP_STR_UP` 힘 + 4
 - `AEP_DEX_UP` 민첩성 + 4
@@ -794,7 +794,7 @@ CBM은 다음과 같이 정의할 수 있습니다.
 활성화 시 아티팩트의 효과(`"use_action": "ARTIFACT"`이 필요함)
 max_charges 값은 0이 아니어야 합니다).
 
-가능한 값(최신 목록은 src/artifact.h 참조):
+가능한 값(최신 목록은 src/cpp/artifact.h 참조):
 
 - `AEA_STORM` 충격장 방출
 - `AEA_FIREBALL` 타겟

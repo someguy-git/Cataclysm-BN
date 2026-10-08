@@ -13,7 +13,7 @@ undue disruption to development.
 ## Why do we have a homegrown JSON formatter?
 
 DDA wrote their own JSON parser. It lives in `tools/format/format.cpp` and it leverages
-`src/json.cpp`to parse and emit JSON.
+`src/cpp/json.cpp`to parse and emit JSON.
 
 This isn't optimal solution as it makes using existing JSON formatters (e.g `deno fmt`) impossible,
 but [last attempt](https://github.com/cataclysmbn/Cataclysm-BN/pull/3118) proved that the

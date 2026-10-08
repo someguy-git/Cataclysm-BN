@@ -278,7 +278,7 @@ When you sort your inventory by category, these are the categories that are disp
 ### スコアと実績
 
 スコアは、_events_ に基づいて 2 つまたは 3 つのステップで定義されます。どのようなイベントが存在し、どのようなデータが存在するかを確認するには
-これらには [`event.h`](https://github.com/cataclysmbn/Cataclysm-BN/blob/main/src/event.h) が含まれています。
+これらには [`event.h`](https://github.com/cataclysmbn/Cataclysm-BN/blob/main/src/cpp/event.h) が含まれています。
 
 各イベントには特定のフィールドのセットが含まれます。各フィールドには文字列キーと `cata_variant` 値があります。
 フィールドには、イベントに関するすべての関連情報が提供される必要があります。
@@ -327,7 +327,7 @@ struct event_spec<event_type::gains_skill_level> {
 
 - イベント フィールドの変換に基づいて、各イベントに新しいフィールドを追加します。イベントフィールドの変換
   で見つけることができます
-  [`event_field_transformation.cpp`](https://github.com/cataclysmbn/Cataclysm-BN/blob/main/src/event_field_transformations.cpp)。
+  [`event_field_transformation.cpp`](https://github.com/cataclysmbn/Cataclysm-BN/blob/main/src/cpp/event_field_transformations.cpp)。
 - イベントに含まれる値に基づいてイベントをフィルタリングし、イベントの一部のサブセットを含むストリームを生成します。
   入力ストリーム。
 - 出力ストリームに関係のないいくつかのフィールドを削除します。

@@ -1,6 +1,6 @@
 # C++ コードスタイルガイド
 
-プロジェクト内の全ての C++ コードは、特定のスタイルが適用されています。プッシュ前に `just fmt` を実行し、C++ だけを変更した場合は `just fmt-cpp` を実行してください。この helper はトップレベルの `src/*.cpp` と `src/*.h` にのみ astyle を使い、他のほとんどの C++ ファイルには clang-format を使います。`tools/clang-tidy-plugin/test/` のようなフォーマッタ依存の fixture は変更しません。
+プロジェクト内の全ての C++ コードは、特定のスタイルが適用されています。プッシュ前に `just fmt` を実行し、C++ だけを変更した場合は `just fmt-cpp` を実行してください。この helper はトップレベルの `src/cpp/*.cpp` と `src/cpp/*.h` にのみ astyle を使い、他のほとんどの C++ ファイルには clang-format を使います。`tools/clang-tidy-plugin/test/` のようなフォーマッタ依存の fixture は変更しません。
 
 astyle を使う場所ではバージョン 3.1 を使用します。バージョン 3.0.1 はわずかな箇所でしか違いを生じませんが、バージョン 3.6.6 では、ほぼ全てのファイルで差異が生じます。
 

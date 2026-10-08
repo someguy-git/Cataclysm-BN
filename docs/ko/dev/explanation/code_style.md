@@ -1,6 +1,6 @@
 # C++ 코드 스타일 가이드
 
-프로젝트의 모든 C++ 코드는 스타일이 지정되어 있습니다. 푸시하기 전에 `just fmt`를 실행하고, C++만 바꿨다면 `just fmt-cpp`를 실행하세요. helper는 top-level `src/*.cpp`와 `src/*.h`에만 astyle을 사용하고 대부분의 다른 C++ 파일에는 clang-format을 사용합니다. `tools/clang-tidy-plugin/test/` 같은 포매터에 민감한 fixture는 변경하지 않습니다.
+프로젝트의 모든 C++ 코드는 스타일이 지정되어 있습니다. 푸시하기 전에 `just fmt`를 실행하고, C++만 바꿨다면 `just fmt-cpp`를 실행하세요. helper는 top-level `src/cpp/*.cpp`와 `src/cpp/*.h`에만 astyle을 사용하고 대부분의 다른 C++ 파일에는 clang-format을 사용합니다. `tools/clang-tidy-plugin/test/` 같은 포매터에 민감한 fixture는 변경하지 않습니다.
 
 astyle을 사용하는 곳에서는 버전 3.1을 사용합니다. 버전 3.0.1은 몇 군데만 차이가 있지만, 버전 3.6.6은 거의 모든 파일에서 차이가 발생합니다.
 

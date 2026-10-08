@@ -10,7 +10,7 @@ configuration.
    entry in `data/raw/languages.json`. Don't add genders there until you're sure you will need them,
    because it will make more work for you. Current choices are: `m` (male), `f` (female), `n`
    (neuter). If you need different genders than the ones currently supported, see relevant note in
-   `src/language.h`.
+   `src/cpp/language.h`.
 
 Having done this, the relevant dialogue lines will appear multiple times for translation, with
 different genders specified in the message context. For example, a context of `npc:m` would indicate

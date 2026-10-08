@@ -28,7 +28,7 @@ Android では USB デバッグを有効にした ARM64 デバイスを接続し
 
 ## コードスタイル (C++)
 
-C++ フォーマットはトップレベルの `src/*.cpp` と `src/*.h` にのみ [Artistic Style](http://astyle.sourceforge.net/) を使います。他のほとんどの C++ ファイルには [clang-format](https://clang.llvm.org/docs/ClangFormat.html) を使います。`tools/clang-tidy-plugin/test/` のようなフォーマッタ依存の fixture は変更しません。ファイルごとのツール選択はリポジトリの helper に任せてください。
+C++ フォーマットはトップレベルの `src/cpp/*.cpp` と `src/cpp/*.h` にのみ [Artistic Style](http://astyle.sourceforge.net/) を使います。他のほとんどの C++ ファイルには [clang-format](https://clang.llvm.org/docs/ClangFormat.html) を使います。`tools/clang-tidy-plugin/test/` のようなフォーマッタ依存の fixture は変更しません。ファイルごとのツール選択はリポジトリの helper に任せてください。
 
 ### C++ フォーマットを呼び出す
 
@@ -56,7 +56,7 @@ just hooks-setup
 
 ### Visual Studio 向け Astyle 拡張機能
 
-トップレベルの `src/*.cpp` と `src/*.h` にのみ使ってください。リポジトリのスタイルには `just fmt-cpp` を使ってください。
+トップレベルの `src/cpp/*.cpp` と `src/cpp/*.h` にのみ使ってください。リポジトリのスタイルには `just fmt-cpp` を使ってください。
 Visual Studio Marketplace に astyle 拡張機能はありますが、VS2019 または VS2022 で私たちの目的に対して正しく機能することが確認されているものは（まだ）ありません。
 
 #### Visual Studio 2022
@@ -178,13 +178,13 @@ sudo dnf install clang-devel llvm-devel clang-tools-extra-devel
 単一のファイルでプラグインを実行するには、プロジェクトルートで以下のコマンドを実行します。
 
 ```sh
-$ ./build-scripts/clang-tidy-wrapper.sh -fix src/achievement.cpp
+$ ./build-scripts/clang-tidy-wrapper.sh -fix src/cpp/achievement.cpp
 ```
 
 複数のファイルでプラグインを実行するには、[GNU parallel](https://www.gnu.org/software/parallel/)を使用します。
 
 ```sh
-$ parallel ./build-scripts/clang-tidy-wrapper.sh -fix ::: src/*.cpp
+$ parallel ./build-scripts/clang-tidy-wrapper.sh -fix ::: src/cpp/*.cpp
 ```
 
 ## include-what-you-use
@@ -215,7 +215,7 @@ IWYU は clang-tidy が好まない C スタイルのライブラリヘッダー
   [関連ヘッダー](https://github.com/include-what-you-use/include-what-you-use/blob/master/docs/IWYUPragmas.md#iwyu-pragma-associated)の概念があり、各 cpp ファイルには任意の数の関連ヘッダーを含めることができます。cpp ファイルは、それらのヘッダーで宣言されたものを定義することが期待されます。Cata では、ヘッダーと cpp ファイル間のマッピングはそれほど単純ではないため、複数の関連ヘッダーを持つファイルと、関連ヘッダーを持たないファイルがあります。どの cpp ファイルにも関連付けられていないヘッダーは、そのインクルードが更新されないため、ビルドが壊れる可能性があり、理想的にはすべてのヘッダーが何らかの cpp ファイルに関連付けられるべきです。次のコマンドを使用すると、現在どの cpp ファイルにも関連付けられていないヘッダーのリストを取得できます（GNU sed が必要です）。
 
 ```sh
-diff <(ls src/*.h | sed 's!.*/!!') <(for i in src/*.cpp; do echo $i; sed -n '/^#include/{p; :loop n; p; /^$/q; b loop}' $i; done | grep 'e "' | grep -o '"[^"]*"' | sort -u | tr -d '"')
+diff <(ls src/cpp/*.h | sed 's!.*/!!') <(for i in src/cpp/*.cpp; do echo $i; sed -n '/^#include/{p; :loop n; p; /^$/q; b loop}' $i; done | grep 'e "' | grep -o '"[^"]*"' | sort -u | tr -d '"')
 ```
 
 - [clang のバグ](https://bugs.llvm.org/show_bug.cgi?id=20666)のため、明示的なインスタンス化のテンプレート引数での使用はカウントされず、`IWYU pragma: keep`が必要になる場合があります。

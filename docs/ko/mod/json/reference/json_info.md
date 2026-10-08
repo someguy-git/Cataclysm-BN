@@ -278,7 +278,7 @@ When you sort your inventory by category, these are the categories that are disp
 ### 점수 및 성과
 
 점수는 _events_를 기준으로 2~3단계로 정의됩니다. 어떤 이벤트가 존재하는지, 어떤 데이터가 있는지 확인하려면
-여기에는 [`event.h`](https://github.com/cataclysmbn/Cataclysm-BN/blob/main/src/event.h)이 포함되어 있습니다. 읽어보세요.
+여기에는 [`event.h`](https://github.com/cataclysmbn/Cataclysm-BN/blob/main/src/cpp/event.h)이 포함되어 있습니다. 읽어보세요.
 
 각 이벤트에는 특정 필드 집합이 포함되어 있습니다. 각 필드에는 문자열 키와 `cata_variant` 값이 있습니다.
 필드는 이벤트에 대한 모든 관련 정보를 제공해야 합니다.
@@ -327,7 +327,7 @@ struct event_spec<event_type::gains_skill_level> {
 
 - 이벤트 필드 변환을 기반으로 각 이벤트에 새 필드를 추가합니다. 이벤트 필드 변환
   에서 찾을 수 있습니다
-  [`event_field_transformation.cpp`](https://github.com/cataclysmbn/Cataclysm-BN/blob/main/src/event_field_transformations.cpp).
+  [`event_field_transformation.cpp`](https://github.com/cataclysmbn/Cataclysm-BN/blob/main/src/cpp/event_field_transformations.cpp).
 - 이벤트의 일부 하위 집합을 포함하는 스트림을 생성하기 위해 포함된 값을 기반으로 이벤트를 필터링합니다.
   입력 스트림.
 - 출력 스트림에 관심이 없는 일부 필드를 삭제합니다.

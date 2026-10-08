@@ -41,7 +41,7 @@ Filter는 Raw의 최초 데이터와 무기 등급(B1 셀)을 받아, 그보다 
 처음 7개 행에는 헤더 데이터가 있습니다. 계산의 대부분은 8행부터 시작됩니다.
 
 모든 무기 스킬이 4이고 근력 10, 민첩 10, 지각 10인 생존자를 기준으로 무기를 평가했습니다.
-`base hit`, `stat crit`, `skill crit`, `bash mult`, `cut mult`, `stab mult` 값은 `src/melee.cpp`의
+`base hit`, `stat crit`, `skill crit`, `bash mult`, `cut mult`, `stab mult` 값은 `src/cpp/melee.cpp`의
 관련 부분에서 가져왔습니다.
 
 - A열 "Average"는 무기의 새 평가 값이며, 쉽게 참조할 수 있도록 시트 가장자리에 있습니다.
