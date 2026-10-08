@@ -1,13 +1,13 @@
 [package]
-name = "xtask"
+name = "cata-data"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
 publish.workspace = true
 
-[[bin]]
-name = "xtask"
-path = "src/main.rs"
+[lib]
+name = "cata_data"
 
 [dependencies]
-cata-conformance.workspace = true
+cata-json.workspace = true
+serde_json.workspace = true

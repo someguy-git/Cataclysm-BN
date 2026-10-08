@@ -204,9 +204,11 @@ tooling (`tools/json_tools`, the clang-tidy plugin → clippy), the i18n pipelin
 
 Progress recorded on this branch:
 
-- **Phase 0 (foundation) — in progress.**
+- **Phase 0 (foundation) — largely done.**
   - The C++ tree now lives in `src/cpp/`; the repository's build files, scripts, CI
     workflows, tooling configs, docs, and agent skills have been re-pointed.
+    Committed as `refactor: relocate the C++ engine to src/cpp and bootstrap a Rust
+    workspace`.
   - The Cargo workspace is rooted at the repository root (see `Cargo.toml`), with the
     first crates under `src/`: `cata-core` (hosting the `rng` port) and `cata-ffi` (the
     C ABI shim), plus `xtask`.
@@ -214,12 +216,33 @@ Progress recorded on this branch:
     targets, guarded by the `CATA_RUST` option.
   - The remaining Phase 0 leaf modules (`calendar`, `units`, `damage`, `coordinates`,
     `type_id` / `string_id`, `cata_variant`) are not yet ported.
-- **Phase 1 (data layer) — not started.**
+- **Phase 1 (data layer) — in progress.**
+  - `cata-json` ports the `json.h` loading behaviour on top of `serde_json`: located
+    `JsonError`s, a `JsonObject` view that tracks which members were read, and the
+    `was_loaded`-aware `mandatory`/`optional` readers that `copy-from` inheritance needs.
+  - `cata-data` ports `generic_factory`: ordered storage by id, in-place replacement,
+    `abstract` definitions, aliases, legacy `ident`, id arrays, a version counter, and
+    the `copy-from` deferral queue resolved by `finalize()`. `Loadable` is the object
+    contract, and `RegistryDump` exposes a registry to the harness.
+  - `cata-conformance` is the harness: `ConformanceDump` renders every registry as
+    sorted, tab-separated `type<TAB>id<TAB>canonical-json` text, `diff` classifies each
+    object as missing, extra or changed, and the `cata-conformance compare <golden>
+    <rust>` binary (also `cargo xtask conformance`) exits `1` on any difference.
+  - Tests load a real engine file,
+    `data/json/overmap/overmap_terrain/overmap_terrain_private_resort.json`, which uses an
+    `abstract` definition plus both `copy-from` forms. Loading it in reverse order forces
+    the deferred path and must reproduce the forward-order dump exactly.
+  - Still missing: the per-domain loaders themselves, the C++-side command that writes a
+    golden dump (so the harness has nothing to compare against yet), and exposing the
+    converted loaders through `cata-ffi` for the game to call.
 
 ### Verification notes
 
-- The Rust workspace is verified: `cargo fmt --check`, `cargo clippy -- -D warnings`, and
-  `cargo test` all pass, and `cargo build` produces `target/<profile>/libcata_ffi.a`.
+- The Rust workspace is verified: `cargo fmt --check`, `cargo clippy --workspace
+  --all-targets -- -D warnings` and `cargo test --workspace` all pass (44 tests plus 3
+  doctests), and `cargo build` produces `target/<profile>/libcata_ffi.a`.
+- The conformance CLI was exercised end to end: matching dumps exit `0`, differing dumps
+  exit `1` with a per-object report, and malformed dumps or bad usage exit `2`.
 - The re-pointed C++ build and the CMake↔Cargo integration could **not** be exercised in
   the sandbox used for this change (no CMake and no C++23 compiler were available), so
   they remain unverified end to end and must be checked on a machine with a full
@@ -227,6 +250,9 @@ Progress recorded on this branch:
 - `rng` parity: the `minstd_rand0` engine and the `djb2` hash are exact; the distribution
   helpers are deterministic and unbiased but not yet bit-identical to libstdc++, which the
   Phase 1 conformance oracle will require.
+- The conformance harness is only as strong as its golden files: until the C++ engine can
+  emit a dump, the Rust registry is checked against itself (forward vs. deferred order,
+  reload vs. reload) rather than against the C++ oracle.
 
 ## Cross-cutting decisions
 
