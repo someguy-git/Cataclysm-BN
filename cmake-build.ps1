@@ -561,7 +561,7 @@ if ($IsWin) {
     $winBuildDir = Resolve-BinaryDir $presetName $WinSrcPath
     $winBuildDir = $winBuildDir -replace '/', '\'
     $buildDir    = $winBuildDir
-    $winSubdir   = if ($isTestTarget) { "tests" } else { "src" }
+    $winSubdir   = if ($isTestTarget) { "tests" } else { "src/cpp" }
     $binaryPath  = "$winBuildDir\$winSubdir\$selectedBuildType\$selectedTarget.exe"
     $buildTypeLabel = $selectedBuildType
 } elseif ($IsMac) {
@@ -577,7 +577,7 @@ if ($IsWin) {
     if ($binaryInSrcDir) {
         $binaryPath = "$WinSrcPath/$selectedTarget"
     } else {
-        $subdir = if ($isTestTarget) { "tests" } else { "src" }
+        $subdir = if ($isTestTarget) { "tests" } else { "src/cpp" }
         $binaryPath = "$macBuildPath/$subdir/$selectedTarget"
     }
     $buildTypeLabel = if ($buildType) { $buildType } else { "(from preset)" }
@@ -595,7 +595,7 @@ if ($IsWin) {
     if ($binaryInSrcDir) {
         $binaryPath = "$WslSrcDir/$selectedTarget"
     } else {
-        $subdir = if ($isTestTarget) { "tests" } else { "src" }
+        $subdir = if ($isTestTarget) { "tests" } else { "src/cpp" }
         $binaryPath = "$wslBuildPath/$subdir/$selectedTarget"
     }
     $buildTypeLabel = if ($buildType) { $buildType } else { "(from preset)" }
@@ -984,7 +984,7 @@ done
         $buildTs = Get-Date -Format "yyyy-MM-dd-HHmm"
         $vhStr   = "// NOLINT(cata-header-guard)`n#define VERSION `"$gitVer`"`n#define BUILD_TIMESTAMP `"$buildTs`"`n"
         $b64     = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($vhStr))
-        wsl bash -c "echo '$b64' | base64 -d > $WslSrcDir/src/version.h"
+        wsl bash -c "echo '$b64' | base64 -d > $WslSrcDir/src/cpp/version.h"
         if ($LASTEXITCODE -ne 0) {
             Write-Warning "Failed to write version.h - version will show as HEAD-HASH (non-fatal)."
         } else {

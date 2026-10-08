@@ -1,4 +1,4 @@
-#include "../src/map/map.h"
+#include "../src/cpp/map/map.h"
 #include "activity_actor.h"
 #include "activity_actor_definitions.h"
 #include "avatar.h"

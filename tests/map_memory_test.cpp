@@ -1,4 +1,4 @@
-#include "../src/map/map.h"
+#include "../src/cpp/map/map.h"
 #include "cata_dynamic_bitset.h"
 #include "catch/catch.hpp"
 #include "coordinates.h"

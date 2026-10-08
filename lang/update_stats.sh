@@ -14,7 +14,7 @@ then
     fi
 fi
 
-mkdir -p lang/stats src
+mkdir -p lang/stats src/cpp
 rm -f lang/stats/*
 
 for f in lang/po/*.po
@@ -36,13 +36,13 @@ do
         > "lang/stats/${n}"
 done
 
-: > src/lang_stats.inc
+: > src/cpp/lang_stats.inc
 
 stats_files=(lang/stats/*)
 if [ ${#stats_files[@]} -gt 0 ]
 then
     printf '%s\n' "${stats_files[@]}"
-    cat "${stats_files[@]}" > src/lang_stats.inc
+    cat "${stats_files[@]}" > src/cpp/lang_stats.inc
 else
     echo "No translation statistics generated."
 fi

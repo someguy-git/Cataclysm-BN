@@ -2,7 +2,7 @@
 set -euo pipefail
 
 shadercross="${SHADERCROSS:-shadercross}"
-source_dir="${1:-src/shaders}"
+source_dir="${1:-src/cpp/shaders}"
 output_dir="${2:-data/shaders}"
 
 if ! command -v "${shadercross}" >/dev/null 2>&1; then

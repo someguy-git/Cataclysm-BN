@@ -1,4 +1,4 @@
-#include "../src/vehicle/vpart_position.h"
+#include "../src/cpp/vehicle/vpart_position.h"
 #include "catch/catch.hpp"
 #include "coordinates.h"
 #include "map_iterator.h"

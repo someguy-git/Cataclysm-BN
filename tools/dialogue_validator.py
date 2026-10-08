@@ -96,13 +96,13 @@ def validate(dialogue):
         "TALK_HOW_MUCH_FURTHER": {"responses": ["TALK_DONE"], "ends": True, "parent": None},
         "TALK_SEDATED": {"responses": ["TALK_DONE"], "ends": True, "parent": None},
     }
-    # defined in src/npctalk.cpp
+    # defined in src/cpp/npctalk.cpp
     defined_ids = [ "TALK_NONE", "TALK_DONE", "TALK_TRAIN", "TALK_HOW_MUCH_FURTHER",
                     "TALK_SEDATED" ]
     for topic_id in defined_ids:
         add_topic_by_id(topics, topic_id)
 
-    # referenced in src/npctalk.cpp
+    # referenced in src/cpp/npctalk.cpp
     refered_ids = [ "TALK_WAKE_UP", "TALK_RADIO", "TALK_MISSION_DESCRIBE_URGENT",
                     "TALK_MISSION_DESCRIBE", "TALK_SHELTER", "TALK_SIZE_UP", "TALK_LOOK_AT",
                     "TALK_OPINION", "TALK_SHOUT", "TALK_STRANGER_AGGRESSIVE", "TALK_LEADER",

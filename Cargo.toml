@@ -1,0 +1,19 @@
+# Rust workspace root.
+#
+# The Rust source lives under `src/`, alongside the existing C++ tree which was
+# moved to `src/cpp/`. See docs/en/dev/design/rust-rewrite.md for the migration
+# plan. Only the Phase 0 foundation crates are listed for now; the remaining
+# crates from the plan's target architecture are added as they are ported.
+[workspace]
+resolver = "2"
+members = [
+  "src/cata-core",
+  "src/cata-ffi",
+  "xtask",
+]
+
+[workspace.package]
+version = "0.0.0"
+edition = "2021"
+license = "CC-BY-SA-3.0"
+publish = false

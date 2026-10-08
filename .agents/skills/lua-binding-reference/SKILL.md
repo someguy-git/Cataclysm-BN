@@ -9,7 +9,7 @@ Comprehensive reference for adding Lua bindings to Cataclysm: Bright Nights.
 
 ## Luna Documentation Macros
 
-Add to `src/catalua_luna_doc.h`:
+Add to `src/cpp/catalua_luna_doc.h`:
 
 ```cpp
 // Simple value type
@@ -386,7 +386,7 @@ auto cata::detail::reg_all_bindings( sol::state &lua ) -> void
 ## File Organization
 
 ```
-src/
+src/cpp/
   catalua.h/cpp              - Main Lua interface
   catalua_luna.h             - Luna doc system
   catalua_luna_doc.h         - Type name mappings (LUNA_* macros)
@@ -463,6 +463,6 @@ player:add_msg("Hello from Lua!")
 
 - **Integration Docs**: `docs/en/mod/lua/explanation/lua_integration.md`
 - **Style Guide**: `docs/en/mod/lua/explanation/lua_style.md`
-- **Luna System**: `src/catalua_luna.h`
-- **Examples**: `src/catalua_bindings_creature.cpp`, `src/catalua_bindings_item.cpp`
+- **Luna System**: `src/cpp/catalua_luna.h`
+- **Examples**: `src/cpp/catalua_bindings_creature.cpp`, `src/cpp/catalua_bindings_item.cpp`
 - **Sol2 Docs**: https://sol2.readthedocs.io/

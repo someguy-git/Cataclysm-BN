@@ -1,15 +1,15 @@
-set(MAIN_CPP ${CMAKE_SOURCE_DIR}/src/main.cpp)
-set(MESSAGES_CPP ${CMAKE_SOURCE_DIR}/src/messages.cpp)
-set(RESOURCE_RC ${CMAKE_SOURCE_DIR}/src/resource.rc)
+set(MAIN_CPP ${CMAKE_SOURCE_DIR}/src/cpp/main.cpp)
+set(MESSAGES_CPP ${CMAKE_SOURCE_DIR}/src/cpp/messages.cpp)
+set(RESOURCE_RC ${CMAKE_SOURCE_DIR}/src/cpp/resource.rc)
 
-file(GLOB_RECURSE CATACLYSM_BN_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp)
-list(FILTER CATACLYSM_BN_SOURCES EXCLUDE REGEX "/src/(lua|sol|third-party)/")
+file(GLOB_RECURSE CATACLYSM_BN_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/cpp/*.cpp)
+list(FILTER CATACLYSM_BN_SOURCES EXCLUDE REGEX "/src/cpp/(lua|sol|third-party)/")
 
 list(REMOVE_ITEM CATACLYSM_BN_SOURCES ${MAIN_CPP} ${MESSAGES_CPP})
 
 # Lua binding translation units are template-heavy and primarily run at startup;
 # compile them with no optimization to reduce build times.
-file(GLOB CATALUA_BINDINGS_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/catalua_bindings*.cpp)
+file(GLOB CATALUA_BINDINGS_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/cpp/catalua_bindings*.cpp)
 if (MSVC)
     set(CATALUA_BINDINGS_COMPILE_OPTIONS /Od /Ob0)
 else ()
@@ -21,8 +21,8 @@ foreach (catalua_src IN LISTS CATALUA_BINDINGS_SOURCES)
         SKIP_PRECOMPILE_HEADERS ON)
 endforeach ()
 
-file(GLOB_RECURSE CATACLYSM_BN_HEADERS CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.h)
-list(FILTER CATACLYSM_BN_HEADERS EXCLUDE REGEX "/src/(lua|sol|third-party)/")
+file(GLOB_RECURSE CATACLYSM_BN_HEADERS CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/cpp/*.h)
+list(FILTER CATACLYSM_BN_HEADERS EXCLUDE REGEX "/src/cpp/(lua|sol|third-party)/")
 
 add_subdirectory(lua)
 if (UNIX)
@@ -38,22 +38,27 @@ add_subdirectory(sol)
 # Get GIT version strings
 add_custom_target(
     get_version
-    DEPENDS ${CMAKE_SOURCE_DIR}/src/version.h
+    DEPENDS ${CMAKE_SOURCE_DIR}/src/cpp/version.h
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 add_custom_command(
-    OUTPUT ${CMAKE_SOURCE_DIR}/src/version.h
+    OUTPUT ${CMAKE_SOURCE_DIR}/src/cpp/version.h
     COMMAND ${CMAKE_COMMAND}
-            -D SRC=${CMAKE_SOURCE_DIR}/src/version.h.in
-            -D DST=${CMAKE_SOURCE_DIR}/src/version.h
+            -D SRC=${CMAKE_SOURCE_DIR}/src/cpp/version.h.in
+            -D DST=${CMAKE_SOURCE_DIR}/src/cpp/version.h
             -D GIT_EXECUTABLE=${GIT_EXECUTABLE}
-            -P ${CMAKE_SOURCE_DIR}/src/version.cmake
+            -P ${CMAKE_SOURCE_DIR}/src/cpp/version.cmake
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 # Function to setup common properties for both tiles and curses targets
 function(setup_common_target_properties target_name)
     # Add version dependency
     add_dependencies(${target_name} get_version)
+
+    # Link the Rust foundation crates when they are being built (Phase 0).
+    if (TARGET cata_rust)
+        target_link_libraries(${target_name} PUBLIC cata_rust)
+    endif ()
 
     # Add common libraries
     target_link_libraries(${target_name} PUBLIC ZLIB::ZLIB)
@@ -132,7 +137,7 @@ if (TILES)
             cataclysm-bn-tiles-common OBJECT
             ${CATACLYSM_BN_SOURCES}
             ${CATACLYSM_BN_HEADERS})
-    target_include_directories(cataclysm-bn-tiles-common INTERFACE ${CMAKE_SOURCE_DIR}/src)
+    target_include_directories(cataclysm-bn-tiles-common INTERFACE ${CMAKE_SOURCE_DIR}/src/cpp)
 
     if (WIN32)
         add_definitions(-DUSE_WINMAIN)
@@ -210,7 +215,7 @@ if (CURSES)
     add_library(cataclysm-bn-common OBJECT
             ${CATACLYSM_BN_SOURCES}
             ${CATACLYSM_BN_HEADERS})
-    target_include_directories(cataclysm-bn-common INTERFACE ${CMAKE_SOURCE_DIR}/src)
+    target_include_directories(cataclysm-bn-common INTERFACE ${CMAKE_SOURCE_DIR}/src/cpp)
 
     if (WIN32)
         add_executable(cataclysm-bn

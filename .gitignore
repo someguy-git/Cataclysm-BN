@@ -38,8 +38,8 @@ test_user_dir*
 /obj/
 /objwin/
 /save/
-/src/version.h
-/src/prefix.h
+/src/cpp/version.h
+/src/cpp/prefix.h
 /sound/
 /templates/
 /tools/format/json_formatter.cgi
@@ -88,6 +88,9 @@ Release*/
 CMakeUserPresets.json
 out/
 RelWithDebInfo*/
+
+# Rust build artifacts (Cargo workspace rooted at the repository root)
+/target/
 
 # Visual Studio 2015
 /msvc-full-features/*db

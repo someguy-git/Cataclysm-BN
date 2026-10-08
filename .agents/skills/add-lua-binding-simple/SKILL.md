@@ -12,8 +12,8 @@ This skill helps you add Lua bindings for simple C++ types like `string_id`, enu
 ## What You'll Do
 
 1. **Identify the type** you want to bind (e.g., `my_type`, `my_enum`)
-2. **Choose the binding file** (usually `src/catalua_bindings_ids.cpp` for IDs, or a relevant `catalua_bindings_*.cpp`)
-3. **Add Luna documentation** macro to `src/catalua_luna_doc.h`
+2. **Choose the binding file** (usually `src/cpp/catalua_bindings_ids.cpp` for IDs, or a relevant `catalua_bindings_*.cpp`)
+3. **Add Luna documentation** macro to `src/cpp/catalua_luna_doc.h`
 4. **Register the binding** in the appropriate function
 5. **Build and test** the changes
 
@@ -22,10 +22,10 @@ This skill helps you add Lua bindings for simple C++ types like `string_id`, enu
 ### For string_id types
 
 ```cpp
-// In src/catalua_luna_doc.h, add:
+// In src/cpp/catalua_luna_doc.h, add:
 LUNA_ID( my_type, "MyType" )
 
-// In src/catalua_bindings_ids.cpp, in reg_game_ids():
+// In src/cpp/catalua_bindings_ids.cpp, in reg_game_ids():
 reg_id<my_type, has_int_id>( lua );
 // Use true if type has int_id, false otherwise
 ```
@@ -33,7 +33,7 @@ reg_id<my_type, has_int_id>( lua );
 ### For enum types
 
 ```cpp
-// In src/catalua_luna_doc.h, add:
+// In src/cpp/catalua_luna_doc.h, add:
 LUNA_ENUM( my_enum, "MyEnum" )
 
 // In appropriate catalua_bindings_*.cpp file:
@@ -51,7 +51,7 @@ LUNA_ENUM( my_enum, "MyEnum" )
 ### For simple data types (read-only)
 
 ```cpp
-// In src/catalua_luna_doc.h, add:
+// In src/cpp/catalua_luna_doc.h, add:
 LUNA_DOC( my_class, "MyClass" )
 
 // In appropriate catalua_bindings_*.cpp:
@@ -117,12 +117,12 @@ print(my_id:is_valid())
 
 ## Files to Modify
 
-- `src/catalua_luna_doc.h` - Add LUNA_* macro
-- `src/catalua_bindings_ids.cpp` - For ID types
-- `src/catalua_bindings_*.cpp` - For other types (choose appropriate file)
+- `src/cpp/catalua_luna_doc.h` - Add LUNA_* macro
+- `src/cpp/catalua_bindings_ids.cpp` - For ID types
+- `src/cpp/catalua_bindings_*.cpp` - For other types (choose appropriate file)
 
 ## References
 
 - Lua Integration Docs: `docs/en/mod/lua/explanation/lua_integration.md`
-- Existing Examples: `src/catalua_bindings_ids.cpp`
-- Luna System: `src/catalua_luna.h`
+- Existing Examples: `src/cpp/catalua_bindings_ids.cpp`
+- Luna System: `src/cpp/catalua_luna.h`

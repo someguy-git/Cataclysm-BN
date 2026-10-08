@@ -66,9 +66,9 @@ void test_info_contains(const item& i, const iteminfo_query& q, const std::strin
  * iteminfo_test.cpp:NN: error: call to constructor of 'iteminfo_query' is ambiguous
  *     iteminfo_query q( { iteminfo_parts::BASE_RIGIDITY, iteminfo_parts::ARMOR_ENCUMBRANCE } );
  *                    ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  ../src/iteminfo_query.h:245:9: note: candidate constructor
+ *  ../src/cpp/iteminfo_query.h:245:9: note: candidate constructor
  *     iteminfo_query( const std::string &bits );
- * ../src/iteminfo_query.h:246:9: note: candidate constructor
+ * ../src/cpp/iteminfo_query.h:246:9: note: candidate constructor
  *     iteminfo_query( const std::vector<iteminfo_parts> &setBits );
  *
  * Using this wrapper should force it to use the vector constructor.

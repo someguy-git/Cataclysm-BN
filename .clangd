@@ -1,5 +1,5 @@
 Style:
-  QuotedHeaders: "src/.*"
+  QuotedHeaders: "src/cpp/.*"
 
 InlayHints:
   Enabled: true

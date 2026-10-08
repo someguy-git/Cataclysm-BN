@@ -15,12 +15,12 @@ append_clang_format_source() {
     fi
 
     case "$file" in
-        src/lua/*|src/sol/*|src/third-party/*|tests/catch/*|tools/clang-tidy-plugin/test/*)
+        src/cpp/lua/*|src/cpp/sol/*|src/cpp/third-party/*|tests/catch/*|tools/clang-tidy-plugin/test/*)
             return
             ;;
     esac
 
-    if [[ "$file" == src/*/* || "$file" == tests/* || "$file" == tools/format/* || "$file" == tools/clang-tidy-plugin/* ]]; then
+    if [[ "$file" == src/cpp/*/* || "$file" == tests/* || "$file" == tools/format/* || "$file" == tools/clang-tidy-plugin/* ]]; then
         case "$file" in
             *.cpp|*.h|*.hpp)
                 clang_format_sources+=( "$file" )
@@ -36,7 +36,7 @@ append_astyle_source() {
         return
     fi
 
-    if [[ "$file" =~ ^src/[^/]+\.(cpp|h)$ ]]; then
+    if [[ "$file" =~ ^src/cpp/[^/]+\.(cpp|h)$ ]]; then
         astyle_sources+=( "$file" )
     fi
 }
@@ -50,8 +50,8 @@ else
     while IFS= read -r -d '' file; do
         append_clang_format_source "$file"
     done < <(
-        find src -mindepth 2 \
-            \( -path 'src/lua/*' -o -path 'src/sol/*' -o -path 'src/third-party/*' \) -prune -o \
+        find src/cpp -mindepth 2 \
+            \( -path 'src/cpp/lua/*' -o -path 'src/cpp/sol/*' -o -path 'src/cpp/third-party/*' \) -prune -o \
             -type f \( -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \) -print0
     )
 
@@ -61,7 +61,7 @@ else
 
     while IFS= read -r -d '' file; do
         append_astyle_source "$file"
-    done < <(find src -maxdepth 1 -type f \( -name '*.cpp' -o -name '*.h' \) -print0)
+    done < <(find src/cpp -maxdepth 1 -type f \( -name '*.cpp' -o -name '*.h' \) -print0)
 fi
 
 if (( ${#clang_format_sources[@]} > 0 )); then

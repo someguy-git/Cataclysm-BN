@@ -1,4 +1,4 @@
-#include "../src/map/map.h"
+#include "../src/cpp/map/map.h"
 #include "avatar.h"
 #include "cata_utility.h"
 #include "catch/catch.hpp"

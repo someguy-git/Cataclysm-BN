@@ -1,4 +1,4 @@
-#include "../src/map/map.h"
+#include "../src/cpp/map/map.h"
 #include "catch/catch.hpp"
 #include "enchantments/enchantment.h"
 #include "item.h"

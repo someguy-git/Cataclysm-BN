@@ -1,5 +1,5 @@
-#include "../src/map/map.h"
-#include "../src/map/mapdata.h"
+#include "../src/cpp/map/map.h"
+#include "../src/cpp/map/mapdata.h"
 #include "avatar.h"
 #include "bionics.h"
 #include "bodypart.h"

@@ -1,5 +1,5 @@
-#include "../src/map/submap.h"
-#include "../src/map/submap_load_manager.h"
+#include "../src/cpp/map/submap.h"
+#include "../src/cpp/map/submap_load_manager.h"
 #include "avatar.h"
 #include "batch_turns.h"
 #include "cached_options.h"
